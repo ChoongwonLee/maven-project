@@ -27,12 +27,14 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
+                        bat "chmod 777 webapp.war"
                         bat "scp -r -i C:/Users/choongwon.a.lee/amazon-example.pem webapp/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
+                        bat "chmod 777 weapp.war"
                         bat "scp -r -i C:/Users/choongwon.a.lee/amazon-example.pem webapp/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
                     }
                 }
