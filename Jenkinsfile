@@ -27,15 +27,15 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        // bat "copy -i C:/Users/choongwon.a.lee/amazon-example.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
-                        bat "copy -r **/target/*.war C:/Tomcat/webapps"
+                        bat "pscp -scp -i C:/Users/choongwon.a.lee/amazon-example.pem C:/ProgramData/Jenkins/.jenkins/workspace/FullyAutomated/webapp/target/webapp.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
+                        // bat "copy -r **/target/*.war C:/Tomcat/webapps"
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
-                        // bat "copy -i C:/Users/choongwon.a.lee/amazon-example.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
-                        bat "copy -r **/target/*.war C:/Tomcat-prod/webapps"
+                        bat "pscp -scp -i C:/Users/choongwon.a.lee/amazon-example.pem C:/ProgramData/Jenkins/.jenkins/workspace/FullyAutomated/webapp/target/webapp.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
+                        // bat "copy -r **/target/*.war C:/Tomcat-prod/webapps"
                     }
                 }
             }
