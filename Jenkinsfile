@@ -27,13 +27,15 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "copy -i C:/Users/choongwon.a.lee/amazon-example.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
+                        // bat "copy -i C:/Users/choongwon.a.lee/amazon-example.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
+                        bat "copy -r **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
-                        bat "copy -i C:/Users/choongwon.a.lee/amazon-example.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
+                        // bat "copy -i C:/Users/choongwon.a.lee/amazon-example.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
+                        bat "copy -r **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
                     }
                 }
             }
