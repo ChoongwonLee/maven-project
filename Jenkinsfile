@@ -27,13 +27,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "pscp -i C:/Users/choongwon.a.lee/amazon-example.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
+                        bat "scp -r -i C:/Users/choongwon.a.lee/amazon-example.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
-                        bat "pscp -i C:/Users/choongwon.a.lee/amazon-example.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
+                        bat "scp -r -i C:/Users/choongwon.a.lee/amazon-example.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
                     }
                 }
             }
